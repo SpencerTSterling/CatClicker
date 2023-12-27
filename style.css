@@ -16,7 +16,12 @@ body {
 .cat-container h3 {
     text-align: center;
     font-size: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
+}
+
+.cat-container h2 {
+    text-align:center;
+    margin-bottom:50px;
 }
 
 .cat-img {

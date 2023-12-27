@@ -1,3 +1,5 @@
+import './buildings'
+
 let cat = document.querySelector('#cat');
 let totalKitties = document.querySelector('#total-kitties');
 let totalKittiesNum = parseFloat(totalKitties.innerHTML);
