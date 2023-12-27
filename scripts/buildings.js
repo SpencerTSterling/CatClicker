@@ -1,7 +1,7 @@
 // The Buildings Class
 
 class Building {
-    constructor(name, slogan, baseCPS, baseCost, currency) {
+    constructor(name, slogan, baseCPS, baseCost) {
         this.name = name;
         this.slogan = slogan;
         this.baseCPS = baseCPS;
@@ -17,33 +17,36 @@ class Building {
     }
 
     /**
+     * Updates the CpS (clicks per second).
+     * Multiples the base CPS of the building by its level for the total sum,
+     * which gets added to the cps. 
+     */
+    updatedCPS(){
+        return parseFloat(this.baseCPS * this.level);
+    }
+
+    updatedTotalKitties(totalKittiesNum){
+        return parseFloat( totalKittiesNum - this.cost)
+    }
+
+
+    /**
      * Buys a building. 
      * Subtracts from the Total Kitties, increases building level, and 
      * re-calculates the cost of the building. 
      * @param {number} totalKittiesNum 
-     * @param {number} cps 
      * @returns Building
      */
-    buyBuilding(totalKittiesNum, cps){
+    buyBuilding(totalKittiesNum){
         if (totalKittiesNum >= this.cost) {
-            totalKittiesNum -= this.cost;
-            this.level++
+            this.level++;
             this.cost = this.calculateCost();
             return true;
         } else {
-            alert(`Not enough kitties to buy ${this.name}!`);
+            //alert(`Not enough kitties to buy ${this.name}!`);
+            console.log(`Not enough kitties to buy ${this.name}!`);
             return false;
         }
-    }
-
-    /**
-     * Updates the CpS (clicks per second).
-     * Multiples the base CPS of the building by its level for the total sum,
-     * which gets added to the cps. 
-     * @param {number} cps 
-     */
-    updateCPS(cps){
-        cpsElement.innerHTML = this.baseCPS * this.level;
     }
 
 }
@@ -55,3 +58,15 @@ const catnipGarden = new Building('Catnip Garden', 'Cultivates high-quality catn
 const milkBar = new Building('Milk Bar', 'Serves different flavors of milk', 10, 1500);
 const fishMarket = new Building('Fish Market', 'Offers a variety of fish', 15, 2000);
 
+//Clicker attributes
+function clickerLog(clicker) {
+    console.log('Name:', clicker.name);
+    console.log('Slogan:', clicker.slogan);
+    console.log('Base CPS:', clicker.baseCPS);
+    console.log('Base Cost:', clicker.baseCost);
+    console.log('Level:', clicker.level);
+    console.log('Current Cost:', clicker.cost);
+    console.log('Availability:', clicker.available);
+}
+
+export { clicker , clickerLog};
