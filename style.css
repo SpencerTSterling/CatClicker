@@ -33,7 +33,7 @@ body {
     transform: scale(1.05);
 }
 
-.upgrade {
+.building {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -45,35 +45,35 @@ body {
     background-color: white;
 }
 
-.upgrade h4 {
+.building h4 {
     margin: 0;
     margin-bottom: 20px;
     font-size: 20px;
 }
 
-.upgrade p {
+.building p {
     margin: 0;
 }
 
-.upgrade-icon img {
+.building-icon img {
     width: 55px;
 }
 
-.upgrade-info {
+.building-info {
     font-size: 40;
 }
 
-.upgrade-info .currency-img {
+.building-info .currency-img {
     width: 20px;
     height: 20px;
 }
 
-.upgrade-cost-info {
+.building-cost-info {
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.upgrade-level {
+.building-level {
     font-size: 40;
 }
