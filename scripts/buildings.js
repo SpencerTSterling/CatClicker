@@ -18,8 +18,9 @@ class Building {
 }
 
 // List of Buildings
-const cursor = new Building('Cursor', 'Clicks the big cat', 1, 10);
+const clicker = new Building('Cursor', 'Clicks the big cat', 1, 10);
 const treatBag = new Building('Treat Bag', 'Treats that attract cats', 2, 15);
 const catnipGarden = new Building('Catnip Garden', 'Cultivates high-quality catnip', 8, 1000);
 const milkBar = new Building('Milk Bar', 'Serves different flavors of milk', 10, 1500);
 const fishMarket = new Building('Fish Market', 'Offers a variety of fish', 15, 2000);
+
