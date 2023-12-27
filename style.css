@@ -1,0 +1,79 @@
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(94, 95, 99, 0.671);
+    user-select: none;
+}
+
+.game-container {
+    display: flex;
+    gap: 200px;
+}
+
+.cat-container h3 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.cat-img {
+    width: 300px;
+}
+
+.cat-img:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.cat-img:active {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.upgrade {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 330px;
+    height: 60px;
+    border: 4px solid black;
+    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: white;
+}
+
+.upgrade h4 {
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.upgrade p {
+    margin: 0;
+}
+
+.upgrade-icon img {
+    width: 55px;
+}
+
+.upgrade-info {
+    font-size: 40;
+}
+
+.upgrade-info .currency-img {
+    width: 20px;
+    height: 20px;
+}
+
+.upgrade-cost-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.upgrade-level {
+    font-size: 40;
+}
