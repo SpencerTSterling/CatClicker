@@ -1,0 +1,1 @@
+let totalKitties = 0
