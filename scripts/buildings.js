@@ -37,7 +37,7 @@ class Building {
      * @param {number} totalKittiesNum 
      * @returns Building
      */
-    buyBuilding(totalKittiesNum){
+    upgradeBuilding(){
         if (totalKittiesNum >= this.cost) {
             this.level++;
             this.cost = this.calculateCost();

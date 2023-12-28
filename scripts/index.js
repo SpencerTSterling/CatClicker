@@ -57,7 +57,7 @@ function clickClicker() {
    /// console.log('Clicking the clicker!');
     const newtotalKitties = buildings.clicker.updatedTotalKitties(totalKittiesNum);
 
-    if (buildings.clicker.buyBuilding(totalKittiesNum)){
+    if (buildings.clicker.upgradeBuilding()){
 
         // const newtotalKitties = buildings.clicker.updatedTotalKitties(totalKittiesNum);
         totalKittiesNum = newtotalKitties;
