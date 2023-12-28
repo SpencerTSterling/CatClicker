@@ -51,9 +51,10 @@ class Building {
         return this.available = true;
     }
 
-    unlockNextBuilding (){
-        if (this.level >= this.baseCost && !this.available){
-            this.unlock();
+    unlockNextBuilding(){
+        if (this.level >= this.baseCost && this.available){
+            //alert("You've unlocked a new building!");
+            return true;
         }
     }
 
@@ -67,4 +68,6 @@ const catnipGarden = new Building('Catnip Garden', 'Cultivates high-quality catn
 const milkBar = new Building('Milk Bar', 'Serves different flavors of milk', 10, 1500);
 const fishMarket = new Building('Fish Market', 'Offers a variety of fish', 15, 2000);
 
-export { clicker };
+const buildingList = [clicker, treatBag, catnipGarden, milkBar, fishMarket];
+
+export { clicker, treatBag, catnipGarden, milkBar, fishMarket, buildingList};

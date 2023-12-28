@@ -12,7 +12,20 @@ let buildingCost = document.querySelector('.building-cost');
 
 let clickerBox= document.querySelector('.building');
 
+let cheatBtn = document.querySelector('#cheat');
 
+//test function
+function showBuildingsUnlocked(buildingList) {
+    console.log('Buildings:');
+  
+    for (const building of buildingList) {
+      if (building.available) {
+        console.log(`${building.name} is available`);
+      } else {
+        console.log(`${building.name} is locked`);
+      }
+    }
+  }
 
 
 function clickCat() {
@@ -86,11 +99,38 @@ function buyBuilding(Building) {
 
         // Update the Building display with new info
         updateBuildingDisplay();
+
+
+        //Unlocking Buildings
+
+        if (Building.unlockNextBuilding()){
+
+            // find index of Building in the buildings list
+            const currentIndex = buildings.buildingList.indexOf(Building);
+            // unlock the next building in the list
+            const nextBuilding = buildings.buildingList[currentIndex + 1];
+            nextBuilding.unlock();
+        }
+
+        //(test function) Shows which buildings are locked/unlocked
+        //showBuildingsUnlocked(buildings.buildingList);
+        
    } else {
         console.log(`Not enough kitties to upgrade ${Building.name}!`);
    }
 }
 
 clickerBox.addEventListener('click', () => buyBuilding(buildings.clicker));
+
+
+// ###### Cheats ##### //
+function cheatButtonClick() {
+    // Add 1000 to the total kitties
+    totalKittiesNum += 1000;
+    updateTotalKitties(); // Update the total kitties displayed on the page
+}
+
+// Add a click event listener to the cheat button
+cheatBtn.addEventListener('click', cheatButtonClick);
 
 export {totalKittiesNum, cps};
