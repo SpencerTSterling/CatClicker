@@ -46,8 +46,37 @@ function autoAddCPS(cps) {
 autoAddCPS(cps);
 
 
-   
+/**
+ * Create a building element based on the provided building.
+ * @param {Building} building The building for which to create an element.
+ * @returns {HTMLElement} The created building element.
+ */
+function createBuildingElement(building) {
+    // Clone the existing building element
+    const clickerBuilding = document.querySelector('.building');
+    const buildingElement = clickerBuilding.cloneNode(true);
 
+    // Update the cloned element with new building information
+    buildingElement.querySelector('.building-icon img').src = `./assets/${building.name.toLowerCase().replace(' ', '')}.png`;
+    buildingElement.querySelector('.building-name').textContent = building.name;
+    buildingElement.querySelector('.building-cost').textContent = building.cost;
+    buildingElement.querySelector('.building-level').textContent = `${building.level}`;
+
+    return buildingElement;
+}
+
+
+/**
+ * Initialize click event listeners for the buildings.
+ * @param {Building[]} buildingList The list of buildings to initialize click events for.
+ */
+function initializeBuildingClickEvents(buildingList) {
+    buildingList.forEach((building, index) => {
+        const buildingElement = document.querySelector(`.building-${index}`);
+        buildingElement.addEventListener('click', () => buyBuilding(building));
+    });
+}
+   
 // Add a click event listener to the cat element
 cat.addEventListener('click', clickCat);
 
@@ -89,6 +118,20 @@ function buyBuilding(Building) {
 
         //Unlocking Buildings
 
+         // Unlock the next building if possible
+         if (Building.unlockNextBuilding()) {
+            const currentIndex = buildings.buildingList.indexOf(Building);
+            const nextBuilding = buildings.buildingList[currentIndex + 1];
+            nextBuilding.unlock();
+
+            // Create and append the HTML for the new building if not already created
+            const buildingElement = document.querySelector(`.building-${currentIndex + 1}`);
+            if (!buildingElement) {
+                const newBuildingElement = createBuildingElement(nextBuilding);
+                appendBuildingToContainer(newBuildingElement, currentIndex + 1);
+                console.log(`Building Added: ${nextBuilding.name}`);
+
+        /*
         if (Building.unlockNextBuilding()){
 
             // find index of Building in the buildings list
@@ -102,37 +145,23 @@ function buyBuilding(Building) {
             const buildingElement = createBuildingElement(nextBuilding);
             appendBuildingToContainer(buildingElement);
             console.log(`Building Added: ${nextBuilding.name}`);
-        }
 
-        
-   } else {
-        console.log(`Not enough kitties to upgrade ${Building.name}!`);
-   }
+        */
+        }
+        } else {
+            console.log(`Not enough kitties to upgrade ${Building.name}!`);
+        }
+    }
 }
 
 clickerBox.addEventListener('click', () => buyBuilding(buildings.clicker));
 
 
-function createBuildingElement(building) {
-    // Clone the existing building element
-    const clickerBuilding = document.querySelector('.building');
-    const buildingElement = clickerBuilding.cloneNode(true);
-
-    // Update the cloned element with new building information
-    buildingElement.querySelector('.building-icon img').src = `./assets/${building.name.toLowerCase().replace(' ', '')}.png`;
-    buildingElement.querySelector('.building-name').textContent = building.name;
-    buildingElement.querySelector('.building-cost').textContent = building.cost;
-    buildingElement.querySelector('.building-level').textContent = `${building.level}`;
-
-    return buildingElement;
-}
-
-
-function appendBuildingToContainer(buildingElement) {
+function appendBuildingToContainer(buildingElement, index) {
     const buildingContainer = document.querySelector('.building-container');
+    buildingElement.classList.add(`building-${index}`);
     buildingContainer.appendChild(buildingElement);
-  }
-
+}
 
 
 
@@ -146,4 +175,4 @@ function cheatButtonClick() {
 // Add a click event listener to the cheat button
 cheatBtn.addEventListener('click', cheatButtonClick);
 
-export {totalKittiesNum, cps};
+//export { totalKittiesNum, cps };
