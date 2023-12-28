@@ -36,7 +36,6 @@ class Building {
         return parseFloat( totalKittiesNum - this.cost)
     }
 
-
     /**
      * Upgrades/Levels up a building. 
      * Increases building level, and re-calculates the cost of the building. 
@@ -57,15 +56,4 @@ const catnipGarden = new Building('Catnip Garden', 'Cultivates high-quality catn
 const milkBar = new Building('Milk Bar', 'Serves different flavors of milk', 10, 1500);
 const fishMarket = new Building('Fish Market', 'Offers a variety of fish', 15, 2000);
 
-//Clicker attributes
-function clickerLog(clicker) {
-    console.log('Name:', clicker.name);
-    console.log('Slogan:', clicker.slogan);
-    console.log('Base CPS:', clicker.baseCPS);
-    console.log('Base Cost:', clicker.baseCost);
-    console.log('Level:', clicker.level);
-    console.log('Current Cost:', clicker.cost);
-    console.log('Availability:', clicker.available);
-}
-
-export { clicker , clickerLog};
+export { clicker };
