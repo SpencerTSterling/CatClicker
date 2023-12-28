@@ -52,37 +52,45 @@ autoAddCPS(cps);
 // Add a click event listener to the cat element
 cat.addEventListener('click', clickCat);
 
-//// ##################### Building logic #################///
-function clickClicker() {
-   /// console.log('Clicking the clicker!');
-    const newtotalKitties = buildings.clicker.updatedTotalKitties(totalKittiesNum);
+/**
+ * Purchase and upgrade a building. 
+ * 
+ * Subtracts building cost from Total Kitties, upgrades building level and 
+ * recalculates cost, increases CpS, & updates the building display. 
+ * 
+ * @param {Building} Building The building to be purchased and upgraded.
+ * @throws {Error} Will throw an error if the provided Building is undefined.
+ * @returns {void}
+ */
+function buyBuilding(Building) {
+       // Ensure a valid Building object is provided
+       if (!Building) {
+        throw new Error('Invalid Building object provided.');
+    }
 
-    if (buildings.clicker.buyBuilding(totalKittiesNum)){
+    // Check if player can afford the building
+   if (totalKittiesNum >= Building.cost){
 
-        // const newtotalKitties = buildings.clicker.updatedTotalKitties(totalKittiesNum);
+        // Calculate the new total kitties count after purchasing the building
+        const newtotalKitties = Building.updatedTotalKitties(totalKittiesNum);
         totalKittiesNum = newtotalKitties;
         updateTotalKitties();
 
-        const addedCPS = buildings.clicker.updatedCPS()
+        // Upgrade the building's level and recalculate its cost
+        Building.upgradeBuilding();
+
+         // Calculate the new CPS score after upgrading the building
+        const addedCPS = Building.updatedCPS();
         cps = addedCPS;
         updateCPS();
 
+        // Update the Building display with new info
         updateBuildingDisplay();
-    }
-
-    updateBuildingDisplay();
-
-    /* 
-    console.log('########################')
-    console.log('Name:', buildings.clicker.name);
-    console.log('Slogan:', buildings.clicker.slogan);
-    console.log('Base CPS:', buildings.clicker.baseCPS);
-    console.log('Base Cost:', buildings.clicker.baseCost);
-    console.log('Level:', buildings.clicker.level);
-    console.log('Current Cost:', buildings.clicker.cost);
-    console.log('Availability:', buildings.clicker.available);
-    */
+   } else {
+        console.log(`Not enough kitties to upgrade ${Building.name}!`);
+   }
 }
-clickerBox.addEventListener('click', clickClicker);
+
+clickerBox.addEventListener('click', () => buyBuilding(buildings.clicker));
 
 export {totalKittiesNum, cps};
