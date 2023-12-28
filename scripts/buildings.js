@@ -11,48 +11,47 @@ class Building {
         this.available = false;
     }
 
-    // Price Formula: base cost * 1.15^M (where M is the number of that building owned)
+    /**
+     * Calculates cost of a building based on its level
+     * @returns 
+     */
     calculateCost() {
         return Math.floor(this.baseCost * Math.pow(1.15, this.level));
     }
 
     /**
      * Updates the CpS (clicks per second).
-     * Multiples the base CPS of the building by its level for the total sum,
-     * which gets added to the cps. 
+     * Multiples the base CPS of the building by its level for the total sum
      */
     updatedCPS(){
         return parseFloat(this.baseCPS * this.level);
     }
 
+    /**
+     * Returns totalKittiesNum minus the cost of the building being purchased
+     * @param {*} totalKittiesNum 
+     * @returns 
+     */
     updatedTotalKitties(totalKittiesNum){
         return parseFloat( totalKittiesNum - this.cost)
     }
 
 
     /**
-     * Buys a building. 
-     * Subtracts from the Total Kitties, increases building level, and 
-     * re-calculates the cost of the building. 
-     * @param {number} totalKittiesNum 
+     * Upgrades/Levels up a building. 
+     * Increases building level, and re-calculates the cost of the building. 
      * @returns Building
      */
     upgradeBuilding(){
-        if (totalKittiesNum >= this.cost) {
             this.level++;
             this.cost = this.calculateCost();
             return true;
-        } else {
-            //alert(`Not enough kitties to buy ${this.name}!`);
-            console.log(`Not enough kitties to buy ${this.name}!`);
-            return false;
         }
+
     }
 
-}
-
 // List of Buildings
-const clicker = new Building('Cursor', 'Clicks the big cat', 1, 10);
+const clicker = new Building('Clicker', 'Clicks the big cat', 1, 10);
 const treatBag = new Building('Treat Bag', 'Treats that attract cats', 2, 15);
 const catnipGarden = new Building('Catnip Garden', 'Cultivates high-quality catnip', 8, 1000);
 const milkBar = new Building('Milk Bar', 'Serves different flavors of milk', 10, 1500);

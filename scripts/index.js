@@ -55,34 +55,29 @@ cat.addEventListener('click', clickCat);
 //// ##################### Building logic #################///
 function clickClicker() {
    /// console.log('Clicking the clicker!');
-    const newtotalKitties = buildings.clicker.updatedTotalKitties(totalKittiesNum);
 
-    if (buildings.clicker.upgradeBuilding()){
+   if (totalKittiesNum >= buildings.clicker.cost){
 
-        // const newtotalKitties = buildings.clicker.updatedTotalKitties(totalKittiesNum);
+        // New totalKitties total 
+        const newtotalKitties = buildings.clicker.updatedTotalKitties(totalKittiesNum);
         totalKittiesNum = newtotalKitties;
         updateTotalKitties();
 
-        const addedCPS = buildings.clicker.updatedCPS()
+        //Upgrade building
+        buildings.clicker.upgradeBuilding();
+
+        // New CPS score
+        const addedCPS = buildings.clicker.updatedCPS();
         cps = addedCPS;
         updateCPS();
 
+        // Update the Clicker building info
         updateBuildingDisplay();
-    }
-
-    updateBuildingDisplay();
-
-    /* 
-    console.log('########################')
-    console.log('Name:', buildings.clicker.name);
-    console.log('Slogan:', buildings.clicker.slogan);
-    console.log('Base CPS:', buildings.clicker.baseCPS);
-    console.log('Base Cost:', buildings.clicker.baseCost);
-    console.log('Level:', buildings.clicker.level);
-    console.log('Current Cost:', buildings.clicker.cost);
-    console.log('Availability:', buildings.clicker.available);
-    */
+   } else {
+        console.log(`Not enough kitties to upgrade ${buildings.clicker.name}!`);
+   }
 }
+
 clickerBox.addEventListener('click', clickClicker);
 
 export {totalKittiesNum, cps};
