@@ -113,50 +113,20 @@ function buyBuilding(Building) {
 clickerBox.addEventListener('click', () => buyBuilding(buildings.clicker));
 
 
-function createBuildingElement(building){
-    const buildingElement = document.createElement('div');
-    buildingElement.classList.add('building')
+function createBuildingElement(building) {
+    // Clone the existing building element
+    const clickerBuilding = document.querySelector('.building');
+    const buildingElement = clickerBuilding.cloneNode(true);
 
-
-    // Add building icon
-    const iconElement = document.createElement('div');
-    iconElement.classList.add('building-icon');
-    const iconImg = document.createElement('img');
-    iconImg.src = `./assets/${building.name.toLowerCase().replace(' ', '')}.png`;
-    iconElement.appendChild(iconImg);
-
-    // Add building info
-    const infoElement = document.createElement('div');
-    infoElement.classList.add('building-info');
-    const nameElement = document.createElement('h4');
-    nameElement.classList.add('building-name');
-    nameElement.textContent = building.name;
-    const costInfoElement = document.createElement('div');
-    costInfoElement.classList.add('building-cost-info');
-    const costTextElement = document.createElement('p');
-    costTextElement.textContent = `Cost: ${building.cost}`;
-    const currencyImgElement = document.createElement('img');
-    currencyImgElement.src = './assets/catcoin.png';
-    costInfoElement.appendChild(costTextElement);
-    costInfoElement.appendChild(currencyImgElement);
-
-    // Add building level info
-    const levelInfoElement = document.createElement('div');
-    levelInfoElement.classList.add('building-level-info');
-    const levelTextElement = document.createElement('p');
-    levelTextElement.textContent = `Lvl: ${building.level}`;
-    levelInfoElement.appendChild(levelTextElement);
-
-    // Append elements
-    infoElement.appendChild(nameElement);
-    infoElement.appendChild(costInfoElement);
-    buildingElement.appendChild(iconElement);
-    buildingElement.appendChild(infoElement);
-    buildingElement.appendChild(levelInfoElement);
+    // Update the cloned element with new building information
+    buildingElement.querySelector('.building-icon img').src = `./assets/${building.name.toLowerCase().replace(' ', '')}.png`;
+    buildingElement.querySelector('.building-name').textContent = building.name;
+    buildingElement.querySelector('.building-cost').textContent = building.cost;
+    buildingElement.querySelector('.building-level').textContent = `${building.level}`;
 
     return buildingElement;
-
 }
+
 
 function appendBuildingToContainer(buildingElement) {
     const buildingContainer = document.querySelector('.building-container');
