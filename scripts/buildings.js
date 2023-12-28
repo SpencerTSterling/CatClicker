@@ -47,10 +47,21 @@ class Building {
             return true;
         }
 
+    unlock(){
+        return this.available = true;
+    }
+
+    unlockNextBuilding (){
+        if (this.level >= this.baseCost && !this.available){
+            this.unlock();
+        }
+    }
+
     }
 
 // List of Buildings
 const clicker = new Building('Clicker', 'Clicks the big cat', 1, 10);
+clicker.unlock(); // this Building is automatically unlocked at the start of the game
 const treatBag = new Building('Treat Bag', 'Treats that attract cats', 2, 15);
 const catnipGarden = new Building('Catnip Garden', 'Cultivates high-quality catnip', 8, 1000);
 const milkBar = new Building('Milk Bar', 'Serves different flavors of milk', 10, 1500);
