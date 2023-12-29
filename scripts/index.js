@@ -1,18 +1,18 @@
 import * as buildings from "./buildings.js";
 
-let cat = document.querySelector('#cat');
-let totalKitties = document.querySelector('#total-kitties');
+let cat = document.querySelector("#cat");
+let totalKitties = document.querySelector("#total-kitties");
 let totalKittiesNum = parseFloat(totalKitties.innerHTML);
 
-let cpsElement = document.querySelector('#cps');
+let cpsElement = document.querySelector("#cps");
 let cps = parseFloat(cpsElement.innerHTML);
 
 
-let clickerBox = document.querySelector('.building.clicker');
-let treatBagBox = document.querySelector('.building.treat-bag');
-let catnipGardenBox = document.querySelector('.building.catnip-garden');
-let milkBarBox = document.querySelector('.building.milk-bar');
-let fishMarketBox = document.querySelector('.building.fish-market');
+let clickerBox = document.querySelector(".building.clicker");
+let treatBagBox = document.querySelector(".building.treat-bag");
+let catnipGardenBox = document.querySelector(".building.catnip-garden");
+let milkBarBox = document.querySelector(".building.milk-bar");
+let fishMarketBox = document.querySelector(".building.fish-market");
 
 let cheatBtn = document.querySelector('#cheat');
 
@@ -23,17 +23,17 @@ let cheatBtn = document.querySelector('#cheat');
  * @param {*} building 
  */
 function initializeBuildingHTML(building) {
-    const buildingName = building.name.replace(/\s+/g, '-').toLowerCase();
+    const buildingName = building.name.replace(/\s+/g, "-").toLowerCase();
     const buildingElement = document.querySelector(`.building.${buildingName}`);
     
     // Update building name, cost, and level in the HTML
-    buildingElement.querySelector('.building-name').textContent = building.name;
-    buildingElement.querySelector('.building-cost').textContent = building.cost;
-    buildingElement.querySelector('.building-level').textContent = building.level;
+    buildingElement.querySelector(".building-name").textContent = building.name;
+    buildingElement.querySelector(".building-cost").textContent = building.cost;
+    buildingElement.querySelector(".building-level").textContent = building.level;
     
     // Add the 'unlocked' class if the building is available
     if (building.available) {
-        buildingElement.classList.add('unlocked');
+        buildingElement.classList.add("unlocked");
     }
 }
 
@@ -60,7 +60,7 @@ function updateCPS() {
 
 function updateBuildingDisplay(Building) {
     // Building name converted to the class name on the building's div
-    const buildingClassName = Building.name.replace(/\s+/g, '-').toLowerCase();
+    const buildingClassName = Building.name.replace(/\s+/g, "-").toLowerCase();
 
     // Select the appropriate elements for the building being updated
     const buildingLvlSelector = `.${buildingClassName} .building-level`;
@@ -88,7 +88,7 @@ function autoAddCPS(cps) {
 autoAddCPS(cps);
 
 // Add a click event listener to the cat element
-cat.addEventListener('click', clickCat);
+cat.addEventListener("click", clickCat);
 
 /**
  * Purchase and upgrade a building. 
@@ -106,7 +106,7 @@ function buyBuilding(Building) {
     
     // Ensure a valid Building object is provided
     if (!Building) {
-        throw new Error('Invalid Building object provided.');
+        throw new Error("Invalid Building object provided.");
     }
 
     // Check if player can afford the building
@@ -150,20 +150,20 @@ function buyBuilding(Building) {
  * @param {Building} building // Takes in next Building to be unlocked
  */
 function toggleBuildingClass(building) {
-    const buildingName = building.name.replace(/\s+/g, '-').toLowerCase();
+    const buildingName = building.name.replace(/\s+/g, "-").toLowerCase();
     const buildingElements = document.querySelectorAll(`.building.${buildingName}`);
 
     buildingElements.forEach(element => {
-        element.classList.toggle('locked');
-        element.classList.toggle('unlocked');
+        element.classList.toggle("locked");
+        element.classList.toggle("unlocked");
     });
 }
 
-clickerBox.addEventListener('click', () => buyBuilding(buildings.clicker));
-treatBagBox.addEventListener('click', () => buyBuilding(buildings.treatBag));
-catnipGardenBox.addEventListener('click', () => buyBuilding(buildings.catnipGarden));
-milkBarBox.addEventListener('click', () => buyBuilding(buildings.milkBar));
-fishMarketBox.addEventListener('click', () => buyBuilding(buildings.fishMarket));
+clickerBox.addEventListener("click", () => buyBuilding(buildings.clicker));
+treatBagBox.addEventListener("click", () => buyBuilding(buildings.treatBag));
+catnipGardenBox.addEventListener("click", () => buyBuilding(buildings.catnipGarden));
+milkBarBox.addEventListener("click", () => buyBuilding(buildings.milkBar));
+fishMarketBox.addEventListener("click", () => buyBuilding(buildings.fishMarket));
 
 
 
@@ -175,6 +175,6 @@ function cheatButtonClick() {
 }
 
 // Add a click event listener to the cheat button
-cheatBtn.addEventListener('click', cheatButtonClick);
+cheatBtn.addEventListener("click", cheatButtonClick);
 
 export { totalKittiesNum, cps };
