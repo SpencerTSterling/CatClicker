@@ -24,7 +24,16 @@ class Building {
      * Multiples the base CPS of the building by its level for the total sum
      */
     updatedCPS(){
-        return parseFloat(this.baseCPS * this.level);
+        let totalCPS = 0;
+
+        // Iterate through all unlocked buildings and accumulate CPS
+        for (const building of buildingList) {
+            if (building.available) {
+                totalCPS += building.baseCPS * building.level;
+            }
+        }
+    
+        return parseFloat(totalCPS);
     }
 
     /**
@@ -48,14 +57,12 @@ class Building {
         }
 
     unlock(){
+        console.log(`Unlocked: ${this.name}`);
         return this.available = true;
     }
 
-    unlockNextBuilding(){
-        if (this.level >= this.baseCost && this.available){
-            //alert("You've unlocked a new building!");
-            return true;
-        }
+    canUnlockNextBuilding(){
+        return this.level >= this.baseCost && this.available;
     }
 
     }
@@ -64,9 +71,9 @@ class Building {
 const clicker = new Building('Clicker', 'Clicks the big cat', 1, 10);
 clicker.unlock(); // this Building is automatically unlocked at the start of the game
 const treatBag = new Building('Treat Bag', 'Treats that attract cats', 2, 15);
-const catnipGarden = new Building('Catnip Garden', 'Cultivates high-quality catnip', 8, 1000);
-const milkBar = new Building('Milk Bar', 'Serves different flavors of milk', 10, 1500);
-const fishMarket = new Building('Fish Market', 'Offers a variety of fish', 15, 2000);
+const catnipGarden = new Building('Catnip Garden', 'Cultivates high-quality catnip', 8, 20);
+const milkBar = new Building('Milk Bar', 'Serves different flavors of milk', 10, 25);
+const fishMarket = new Building('Fish Market', 'Offers a variety of fish', 15, 30);
 
 const buildingList = [clicker, treatBag, catnipGarden, milkBar, fishMarket];
 
