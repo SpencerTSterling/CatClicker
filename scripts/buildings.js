@@ -13,7 +13,7 @@ class Building {
 
     /**
      * Calculates cost of a building based on its level
-     * @returns 
+     * @returns {number} The calcuated cost.
      */
     calculateCost() {
         return Math.floor(this.baseCost * Math.pow(1.15, this.level));
@@ -21,7 +21,8 @@ class Building {
 
     /**
      * Updates the CpS (clicks per second).
-     * Multiples the base CPS of the building by its level for the total sum
+     * Multiplies the base CPS of the building by its level for the total sum.
+     * @returns {number} The updated total CpS.
      */
     updatedCPS(){
         let totalCPS = 0;
@@ -37,30 +38,38 @@ class Building {
     }
 
     /**
-     * Returns totalKittiesNum minus the cost of the building being purchased
-     * @param {*} totalKittiesNum 
-     * @returns 
+     * Returns totalKittiesNum minus the cost of the building being purchased.
+     * @param {number} totalKittiesNum - The current total kitties count.
+     * @returns {number} The updated total kitties count.
      */
     updatedTotalKitties(totalKittiesNum){
         return parseFloat( totalKittiesNum - this.cost)
     }
 
     /**
-     * Upgrades/Levels up a building. 
-     * Increases building level, and re-calculates the cost of the building. 
-     * @returns Building
+     * Upgrades/Levels up a building.
+     * Increases building level, and re-calculates the cost of the building.
+     * @returns {boolean} True if the upgrade is successful.
      */
     upgradeBuilding(){
-            this.level++;
-            this.cost = this.calculateCost();
-            return true;
-        }
+        this.level++;
+        this.cost = this.calculateCost();
+        return true;
+    }
 
+    /**
+     * Unlocks the building by switching its availability.
+     * @returns {boolean} True if the building is successfully unlocked.
+     */
     unlock(){
         console.log(`Unlocked: ${this.name}`);
         return this.available = true;
     }
 
+    /**
+     * Checks if the next building can be unlocked.
+     * @returns {boolean} True if the next building can be unlocked.
+     */
     canUnlockNextBuilding(){
         return this.level >= this.baseCost && this.available;
     }
