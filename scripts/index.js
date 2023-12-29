@@ -14,7 +14,7 @@ let catnipGardenBox = document.querySelector(".building.catnip-garden");
 let milkBarBox = document.querySelector(".building.milk-bar");
 let fishMarketBox = document.querySelector(".building.fish-market");
 
-let cheatBtn = document.querySelector('#cheat');
+let cheatBtn = document.querySelector("#cheat");
 
 
 /**
@@ -27,12 +27,10 @@ let cheatBtn = document.querySelector('#cheat');
 function initializeBuildingHTML(Building) {
     const buildingName = Building.name.replace(/\s+/g, "-").toLowerCase();
     const buildingElement = document.querySelector(`.building.${buildingName}`);
-    
     // Update building name, cost, and level in the HTML
     buildingElement.querySelector(".building-name").textContent = Building.name;
     buildingElement.querySelector(".building-cost").textContent = Building.cost;
     buildingElement.querySelector(".building-level").textContent = Building.level;
-    
     // Add the 'unlocked' class if the building is available
     if (Building.available) {
         buildingElement.classList.add("unlocked");
@@ -112,17 +110,15 @@ autoAddCPS(cps);
 cat.addEventListener("click", clickCat);
 
 /**
- * Handles the purchase and upgrade of a building. 
- * Subtracts building cost from Total Kitties, upgrades building level and 
- * recalculates cost, increases CpS, & updates the building display. 
+ * Handles the purchase and upgrade of a building.
+ * Subtracts building cost from Total Kitties, upgrades building level and
+ * recalculates cost, increases CpS, & updates the building display.
  * @param {Building} Building The building to be purchased and upgraded.
  * @throws {Error} Will throw an error if the provided Building is undefined.
  * @returns {void}
  */
 function buyBuilding(Building) {
-
     console.log(`You bought a ${Building.name}`);
-    
     // Ensure a valid Building object is provided
     if (!Building) {
         throw new Error("Invalid Building object provided.");
@@ -150,14 +146,13 @@ function buyBuilding(Building) {
 
         //Unlocking Buildings
             const currentIndex = buildings.buildingList.indexOf(Building);
-            const nextBuilding = buildings.buildingList[currentIndex + 1];        
+            const nextBuilding = buildings.buildingList[currentIndex + 1];
         if (Building.canUnlockNextBuilding() && !nextBuilding.available) {
             nextBuilding.unlock();
             toggleBuildingClass(nextBuilding);
         } else if (!nextBuilding){
             console.log("You've unlocked all the buildings!")
         }
-        
     } else {
         console.log(`Not enough kitties to upgrade ${Building.name}!`);
     }
@@ -165,7 +160,8 @@ function buyBuilding(Building) {
 
 /**
  * Unlocks a building by displaying the next Building to be unlocked.
- * Removes the "locked" class from the building div and replaces it with "unlocked".
+ * Removes the "locked" class from the building div
+ * and replaces it with "unlocked".
  * @param {Object} building - The building object to be unlocked.
  * @returns {void}
  */
