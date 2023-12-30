@@ -1,4 +1,4 @@
-[Check out the game live!]([http://spencertsterling.github.kittyclicker/](https://spencertsterling.github.io/CatClicker/))
+[Check out the game live!](https://spencertsterling.github.io/CatClicker/)
 
 # Kitty Clicker #
 A simple clicker game where you earn kitties by clicking. 
