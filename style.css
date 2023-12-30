@@ -4,7 +4,7 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: rgba(94, 95, 99, 0.671);
+    background-color: #fffafa;
     user-select: none;
 }
 
@@ -12,19 +12,23 @@ h3 {
     text-align: center;
     margin-top: 10%;
     margin-bottom: 10px; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:xx-large;
 }
 
 .game-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    background-color: beige;
+    gap: 05%;
+   /** background-color: beige; **/
     margin-top: 100px;
+    
 }
 
+/**
 .cat-container{
-    background-color: lightblue;
 }
+*/
 
 .cat-container h3 {
     text-align: center;
@@ -51,9 +55,11 @@ h3 {
     transform: scale(1.05);
 }
 
+/**
 .building-container{
-    background-color: lightgreen;
+   background-color: lightgreen; 
 }
+*/
 
 .building.locked{
     display:none;
@@ -105,6 +111,6 @@ h3 {
 }
 
 #cheat{
-    margin-top: 0px;
-    margin-left: 20%;
+    margin-top: 0;
+    margin-left: 40%;
 }
